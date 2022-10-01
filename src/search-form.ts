@@ -1,6 +1,6 @@
 import { renderBlock } from './lib.js'
 
-function diff(start:Date, end: Date) {
+function diff(start:Date, end: Date):number {
   const date1 = new Date(start)
   const date2 = new Date(end)
   const oneDay = 1000 * 60 * 60 * 24
