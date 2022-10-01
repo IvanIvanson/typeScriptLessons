@@ -1,6 +1,22 @@
 import { renderBlock } from './lib.js'
 
-export function renderSearchFormBlock () {
+function diff(start:Date, end: Date) {
+  const date1 = new Date(start)
+  const date2 = new Date(end)
+  const oneDay = 1000 * 60 * 60 * 24
+  const diffTime = date2.getTime() - date1.getTime()
+  const diffDays = Math.round(diffTime / oneDay)
+  return diffDays
+}
+export function renderSearchFormBlock(dateFrom: Date, dateTo: Date) {
+ 
+  if (dateFrom === dateTo) {
+    alert('неправильно выбрана дата')
+  } else {
+    return diff(dateFrom, dateTo)
+  }
+  
+
   renderBlock(
     'search-form-block',
     `
@@ -19,12 +35,12 @@ export function renderSearchFormBlock () {
         </div>
         <div class="row">
           <div>
-            <label for="check-in-date">Дата заезда</label>
-            <input id="check-in-date" type="date" value="2021-05-11" min="2021-05-11" max="2021-06-30" name="checkin" />
+            <label for="check-in-date">дата въезда</label>
+            <input id="check-in-date" type="date" value=${dateFrom} min="2021-05-11" max="2021-06-30" name="checkin" />
           </div>
           <div>
-            <label for="check-out-date">Дата выезда</label>
-            <input id="check-out-date" type="date" value="2021-05-13" min="2021-05-11" max="2021-06-30" name="checkout" />
+            <label for="check-out-date">дата выезда</label>
+            <input id="check-out-date" type="date" value=${dateTo} min="2021-05-11" max="2021-06-30" name="checkout" />
           </div>
           <div>
             <label for="max-price">Макс. цена суток</label>

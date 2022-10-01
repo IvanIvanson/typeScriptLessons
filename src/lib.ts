@@ -1,14 +1,23 @@
  
-export function renderBlock(elementId, html) {
+export function renderBlock(elementId: string, html: string) {
  
   const element: HTMLElement = document.getElementById(elementId) as HTMLElement
   element.innerHTML = html
 }
 
-export function renderToast(message:any, action?:any):void {
+interface Message{
+  type: string, 
+  text: string
+}
+
+interface Action{
+  name: string, 
+  handler:() => void | null
+}
+export function renderToast(message:Message | null, action?:Action):void {
   let messageText = ''
   
-  if (message != null) {
+  if (message !== null) {
     messageText = `
       <div id="info-block" class="info-block ${message.type}">
         <p>${message.text}</p>
@@ -23,9 +32,9 @@ export function renderToast(message:any, action?:any):void {
   )
 
   const button = document.getElementById('toast-main-action')
-  if (button != null) {
+  if (button !== null) {
     button.onclick = function() {
-      if (action != null && action.handler != null) {
+      if (action && action.handler !== null) {
         action.handler()
       }
       renderToast(null)
