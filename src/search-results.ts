@@ -1,5 +1,6 @@
 import { renderBlock } from './lib.js'
 
+
 export function renderSearchStubBlock () {
   renderBlock(
     'search-results-block',
