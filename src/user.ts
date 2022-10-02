@@ -4,6 +4,7 @@ export function renderUserBlock (name: string, linkAwatar: string, favoriteItems
   const favoritesCaption = favoriteItemsAmount > 0 ? favoriteItemsAmount: 'ничего нет'
   const hasFavoriteItems = favoriteItemsAmount ? true : false
 
+  
   renderBlock(
     'user-block',
     `
