@@ -8,12 +8,14 @@ export function renderBlock(elementId: string, html: string) {
 interface Message{
   type: string, 
   text: string
+
 }
 
 interface Action{
   name: string, 
   handler:() => void | null
 }
+
 export function renderToast(message:Message | null, action?:Action):void {
   let messageText = ''
   

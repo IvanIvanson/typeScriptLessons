@@ -1,6 +1,10 @@
 import { renderBlock } from './lib.js'
 
-function diff(start:Date, end: Date) {
+const btnSearch = document.getElementById('search-btn')
+// btnSearch.addEventListener('click', diff)
+
+
+function diff(start:Date, end: Date):number {
   const date1 = new Date(start)
   const date2 = new Date(end)
   const oneDay = 1000 * 60 * 60 * 24
@@ -8,7 +12,19 @@ function diff(start:Date, end: Date) {
   const diffDays = Math.round(diffTime / oneDay)
   return diffDays
 }
-export function renderSearchFormBlock(dateFrom: Date, dateTo: Date) {
+
+/*Создать интерфейс SearchFormData, в котором описать структуру для полей поисковой
+формы. Написать функцию-обработчик формы search, которая собирает заполненные
+пользователем данные в формате описанной структуры и передаёт их в функцию поиска.
+*/
+
+interface SearchFormData{
+  dateFrom: Date, 
+  dateTo: Date,
+   handler:(dateFrom, dateTo) => void | null
+}
+
+export function renderSearchFormBlock(dateFrom:SearchFormData, dateTo: SearchFormData){
  
   if (dateFrom === dateTo) {
     alert('неправильно выбрана дата')
@@ -16,7 +32,6 @@ export function renderSearchFormBlock(dateFrom: Date, dateTo: Date) {
     return diff(dateFrom, dateTo)
   }
   
-
   renderBlock(
     'search-form-block',
     `
@@ -47,7 +62,7 @@ export function renderSearchFormBlock(dateFrom: Date, dateTo: Date) {
             <input id="max-price" type="text" value="" name="price" class="max-price" />
           </div>
           <div>
-            <div><button>Найти</button></div>
+            <div><button id="search-btn" onclick=diff()>Найти</button></div>
           </div>
         </div>
       </fieldset>
