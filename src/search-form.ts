@@ -13,7 +13,18 @@ function diff(start:Date, end: Date):number {
   return diffDays
 }
 
-export function renderSearchFormBlock(dateFrom: Date, dateTo: Date) {
+/*Создать интерфейс SearchFormData, в котором описать структуру для полей поисковой
+формы. Написать функцию-обработчик формы search, которая собирает заполненные
+пользователем данные в формате описанной структуры и передаёт их в функцию поиска.
+*/
+
+interface SearchFormData{
+  dateFrom: Date, 
+  dateTo: Date,
+   handler:(dateFrom, dateTo) => void | null
+}
+
+export function renderSearchFormBlock(dateFrom:SearchFormData, dateTo: SearchFormData){
  
   if (dateFrom === dateTo) {
     alert('неправильно выбрана дата')
